@@ -1,132 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuesta</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .envelope {
-            width: 300px;
-            height: 200px;
-            background: #ff4d4d;
-            border: 2px solid #cc0000;
-            border-radius: 10px;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
-        .envelope:hover {
-            transform: scale(1.05);
-        }
-        .envelope::before, .envelope::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #ff4d4d;
-            border: 2px solid #cc0000;
-            transition: transform 0.3s;
-        }
-        .envelope::before {
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 100px solid #ff4d4d;
-            top: -50px;
-            left: 0;
-        }
-        .envelope::after {
-            width: 0;
-            height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-top: 100px solid #ff4d4d;
-            bottom: -50px;
-            left: 0;
-        }
-        .questions {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .buttons .no-button {
-            position: relative;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barbería — Inicio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="envelope" onclick="showQuestions()"></div>
-    <div class="questions">
-        <div class="question" id="question1">
-            <p>¿eres gay?</p>
-            <div class="buttons">
-                <button onclick="answerYes()">Sí</button>
-                <button class="no-button" onmouseover="moveButton()">No</button>
-            </div>
-        </div>
-        <div class="question" id="question2" style="display: none;">
-            <p>¿tu mama sabe que eres gay?</p>
-            <input type="text" id="respuestaLibre" required>
-            <button onclick="submitAnswer()">Enviar</button>
-        </div>
+  <header>
+    <h1>La Barbería de ulises</h1>
+  </header>
+
+  <main>
+    <div class="hero card">
+      <div>
+        <h2 class="lead">Cortes clásicos y modernos — Afeitado de precisión</h2>
+        <p class="muted">Experiencia, estilo y trato personalizado. Reserva tu cita hoy.</p>
+      </div>
+      <div class="buttons">
+        <a class="btn" href="mi-info.html">Servicios</a>
+        <a class="btn" href="videojuegos.html">Galería</a>
+        <a class="btn" href="contacto.html">Contacto</a>
+      </div>
     </div>
-    
-    <script>
-        function showQuestions() {
-            document.querySelector('.envelope').style.display = 'none';
-            document.querySelector('.questions').style.display = 'flex';
-        }
-        function answerYes() {
-            sendWhatsAppMessage('Sí');
-            document.getElementById('question1').style.display = 'none';
-            document.getElementById('question2').style.display = 'block';
-        }
-        function answerNo() {
-            sendWhatsAppMessage('No');
-            document.getElementById('question1').style.display = 'none';
-            document.getElementById('question2').style.display = 'block';
-        }
-        function sendWhatsAppMessage(answer) {
-            var phoneNumber = '4961410525'; // Replace with your phone number
-            var message = 'Respuesta de la encuesta: ' + answer;
-            var url = 'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=' + encodeURIComponent(message);
-            window.open(url, '_blank');
-        }
-        function submitAnswer() {
-            var respuestaLibre = document.getElementById('respuestaLibre').value;
-            sendWhatsAppMessage(respuestaLibre);
-            alert('¡Gracias por tu respuesta!');
-        }
-        function moveButton() {
-            var button = document.querySelector('.no-button');
-            var x = Math.floor(Math.random() * 400) - 200;
-            var y = Math.floor(Math.random() * 400) - 200;
-            button.style.transform = `translate(${x}px, ${y}px)`;
-        }
-    </script>
+  </main>
+  <footer>
+    <p style="text-align:center;">La Barbería de ulises — Hecho por brandon ulises rodriguez govea</p>
+  </footer>
 </body>
 </html>
