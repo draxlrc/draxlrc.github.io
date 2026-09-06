@@ -1,1 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti 💛</title>
 
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fff4a8, #ffd5e5, #ffe7a3);
+    color: #5a3a3a;
+}
+
+/* CORAZONES */
+.hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    bottom: -60px;
+    font-size: 24px;
+    animation: subir linear infinite;
+    opacity: .65;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .7;
+    }
+
+    100% {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* TARJETA */
+.card {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 430px);
+    min-height: 560px;
+    padding: 35px 25px;
+    background: rgba(255,255,255,.92);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(100,60,70,.25);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+/* CARTA */
+.envelope {
+    font-size: 100px;
+    cursor: pointer;
+    animation: flotar 2s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+h1 {
+    color: #d58b00;
+    font-size: 30px;
+}
+
+p {
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+/* FLORES */
+.flowers {
+    font-size: 65px;
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+/* BOTONES */
+button {
+    border: 0;
+    padding: 13px 25px;
+    margin: 8px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.continuar {
+    background: #f3c400;
+    color: white;
+}
+
+.volver {
+    background: #c9a7ad;
+    color: white;
+}
+
+.si {
+    background: #ff6685;
+    color: white;
+}
+
+.no {
+    background: #ddd;
+    color: #555;
+}
+
+/* APARTADOS */
+#carta,
+#cancion,
+#pregunta {
+    display: none;
+}
+
+/* VIDEOS */
+.video {
+    width: 100%;
+    margin: 18px 0;
+}
+
+.video iframe {
+    width: 100%;
+    height: 210px;
+    border: 0;
+    border-radius: 18px;
+}
+
+/* TEXTO PEQUEÑO */
+.texto-pequeno {
+    font-size: 11px;
+    color: #000;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+/* BOTONES DE NAVEGACIÓN */
+.navegacion {
+    margin-top: 8px;
+}
+
+/* ==========================
+   APARTADO TRISTE
+========================== */
+
+#triste {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 20px;
+    background: #292929;
+    color: white;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.triste-fondo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: .25;
+}
+
+.triste-fondo span {
+    position: absolute;
+    font-size: 30px;
+    animation: tristeSubir 8s linear infinite;
+}
+
+@keyframes tristeSubir {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.triste-contenido {
+    position: relative;
+    z-index: 2;
+    width: min(95%, 430px);
+}
+
+.triste-contenido h1 {
+    color: #ddd;
+}
+
+.triste-texto {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.boton-volver-triste {
+    background: #666;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CORAZONES DE FONDO -->
+<div class="hearts">
+
+    <span class="heart" style="left:5%;animation-duration:8s;">💗</span>
+    <span class="heart" style="left:16%;animation-duration:11s;">💛</span>
+    <span class="heart" style="left:28%;animation-duration:9s;">💕</span>
+    <span class="heart" style="left:40%;animation-duration:13s;">❤️</span>
+    <span class="heart" style="left:54%;animation-duration:10s;">💗</span>
+    <span class="heart" style="left:67%;animation-duration:12s;">💛</span>
+    <span class="heart" style="left:80%;animation-duration:9s;">💕</span>
+    <span class="heart" style="left:92%;animation-duration:14s;">❤️</span>
+
+</div>
+
+
+<!-- TARJETA PRINCIPAL -->
+<div class="card">
+
+    <!-- INICIO -->
+    <div id="inicio">
+
+        <div class="envelope" onclick="abrirCarta()">
+            💌
+        </div>
+
+        <h1>
+            Hay algo para ti...
+        </h1>
+
+        <p>
+            Presiona la carta 💕
+        </p>
+
+    </div>
+
+
+    <!-- FLORES -->
+    <div id="carta">
+
+        <h1>
+            Para ti 💛
+        </h1>
+
+        <p>
+            Quería darte un pequeño detalle...
+        </p>
+
+        <div class="flowers">
+            🌻🌻🌻<br>
+            🌻💛🌻<br>
+            🌻🌻🌻
+        </div>
+
+        <p>
+            <b>
+                Ten, unas flores amarillas para ti 🌼
+            </b>
+        </p>
+
+        <div class="navegacion">
+
+            <button
+                class="volver"
+                onclick="volverInicio()">
+
+                ← Volver
+
+            </button>
+
+            <button
+                class="continuar"
+                onclick="mostrarCancion()">
+
+                Continuar 💕
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CANCIÓN -->
+    <div id="cancion">
+
+        <h1>
+            Una canción para ti 🎶
+        </h1>
+
+        <p>
+            Hay una canción que quiero dedicarte...
+        </p>
+
+        <div class="video">
+
+            <iframe
+                src="https://www.youtube.com/embed/CBRnDwRgF1E"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <p class="texto-pequeno">
+
+            me tienes sintiendo algo muy dentro de mi
+            que no te e podído expresar de una forma sincera
+            y eso que ya no hablamos ni te e visto
+            pero no sales de mi mente
+
+        </p>
+
+        <div class="navegacion">
+
+            <button
+                class="volver"
+                onclick="volverFlores()">
+
+                ← Volver
+
+            </button>
+
+            <button
+                class="continuar"
+                onclick="mostrarPregunta()">
+
+                Continuar 💗
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREGUNTA -->
+    <div id="pregunta">
+
+        <h1>
+            Y ahora... 💕
+        </h1>
+
+        <p>
+            ¿Quisieras salir conmigo?
+        </p>
+
+        <button
+            class="si"
+            onclick="respuestaSi()">
+
+            Sí 💕
+
+        </button>
+
+        <button
+            class="no"
+            onclick="respuestaNo()">
+
+            No
+
+        </button>
+
+        <p class="texto-pequeno">
+
+            no me vuelve loco el tusi pero tú sí,
+            yo por ti sería romantic exclusive
+
+        </p>
+
+        <div class="navegacion">
+
+            <button
+                class="volver"
+                onclick="volverCancion()">
+
+                ← Volver
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==============================
+     APARTADO DESPUÉS DE "NO"
+============================== -->
+
+<div id="triste">
+
+    <div class="triste-fondo">
+
+        <span style="left:5%;animation-delay:0s;">😔</span>
+        <span style="left:18%;animation-delay:2s;">😢</span>
+        <span style="left:30%;animation-delay:4s;">🥀</span>
+        <span style="left:43%;animation-delay:1s;">😞</span>
+        <span style="left:55%;animation-delay:3s;">💔</span>
+        <span style="left:68%;animation-delay:5s;">😔</span>
+        <span style="left:80%;animation-delay:2s;">😢</span>
+        <span style="left:92%;animation-delay:4s;">🥀</span>
+
+    </div>
+
+
+    <div class="triste-contenido">
+
+        <h1>
+            Está bien... 💔
+        </h1>
+
+        <p class="triste-texto">
+            Pero antes de irte,
+            escucha esta canción...
+        </p>
+
+        <div class="video">
+
+            <iframe
+                id="videoTriste"
+                src="https://www.youtube.com/embed/VIajThsrZqM?autoplay=1&mute=1"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <button
+            class="boton-volver-triste"
+            onclick="volverPregunta()">
+
+            ← Volver a la pregunta
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* OCULTAR APARTADOS */
+
+function ocultarTodo() {
+
+    document.getElementById("inicio").style.display = "none";
+
+    document.getElementById("carta").style.display = "none";
+
+    document.getElementById("cancion").style.display = "none";
+
+    document.getElementById("pregunta").style.display = "none";
+
+}
+
+
+/* INICIO → FLORES */
+
+function abrirCarta() {
+
+    ocultarTodo();
+
+    document.getElementById("carta").style.display = "block";
+
+}
+
+
+/* FLORES → INICIO */
+
+function volverInicio() {
+
+    ocultarTodo();
+
+    document.getElementById("inicio").style.display = "block";
+
+}
+
+
+/* FLORES → CANCIÓN */
+
+function mostrarCancion() {
+
+    ocultarTodo();
+
+    document.getElementById("cancion").style.display = "block";
+
+}
+
+
+/* CANCIÓN → FLORES */
+
+function volverFlores() {
+
+    ocultarTodo();
+
+    document.getElementById("carta").style.display = "block";
+
+}
+
+
+/* CANCIÓN → PREGUNTA */
+
+function mostrarPregunta() {
+
+    ocultarTodo();
+
+    document.getElementById("pregunta").style.display = "block";
+
+}
+
+
+/* PREGUNTA → CANCIÓN */
+
+function volverCancion() {
+
+    ocultarTodo();
+
+    document.getElementById("cancion").style.display = "block";
+
+}
+
+
+/* SÍ → WHATSAPP */
+
+function respuestaSi() {
+
+    const mensaje = encodeURIComponent(
+        "Sí 💕 Quiero salir contigo."
+    );
+
+    window.location.href =
+        "https://wa.me/524961473538?text=" + mensaje;
+
+}
+
+
+/* NO → APARTADO TRISTE */
+
+function respuestaNo() {
+
+    document.getElementById("triste")
+    .style.display = "flex";
+
+}
+
+
+/* APARTADO TRISTE → PREGUNTA */
+
+function volverPregunta() {
+
+    document.getElementById("triste")
+    .style.display = "none";
+
+    document.getElementById("pregunta")
+    .style.display = "block";
+
+}
+
+</script>
+
+</body>
+  </html>
